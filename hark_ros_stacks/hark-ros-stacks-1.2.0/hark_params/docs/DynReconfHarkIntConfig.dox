@@ -1,0 +1,6 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~number" : \b [int] Integer for testing dynamic reconfigure in HARK system min: 0, default: 1, max: 99
+

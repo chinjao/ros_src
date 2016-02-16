@@ -1,0 +1,19 @@
+void robot_browser(string action,int admin){
+  zmq::context_t context(1);
+  zmq::socket_t sender(context,ZMQ_PUSH);
+  msgpack::sbuffer buffer;
+  sender.connect("tcp://133.19.23.224:8081");
+  map<string, string> dict;
+  dict["senderName"] = "speechRecognition";
+  dict["name"] = "Robot";
+  dict["time"] = "";
+  if(admin == 0)
+    dict["speechRec"] = "あなたの命令は聞けません";
+  else
+    dict["speechRec"] = action;
+  dict["place"] = "pioneer";
+  msgpack::pack(buffer,dict);
+  zmq::message_t message(buffer.size());
+  memcpy(message.data(),buffer.data(),buffer.size());
+  sender.send(message);
+}

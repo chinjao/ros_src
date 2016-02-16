@@ -1,0 +1,68 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+ 
+import sys
+
+import rospy
+from speech_msgs.msg import AudioData
+import subprocess
+import codecs
+import wave
+import pyaudio
+from numpy import *
+import os, glob, random
+import struct
+import numpy as np
+
+import time
+
+p = pyaudio.PyAudio()
+stream = p.open(format=p.get_format_from_width(4),
+                channels=1,
+                rate=16000,
+                output=True)
+stream.close()
+first = 0
+
+def callback(data):
+    if data.ok == True:
+	time.sleep(0.2)
+        cmd = "aplay /home/yhirai/openSMILE-2.1.0_other/input/input.wav"
+        subprocess.call(cmd,shell=True)
+    '''
+    global p
+    global stream
+    global first
+    if data.ok == True:
+	if first == 0:
+            stream = p.open(format=p.get_format_from_width(4),
+                            channels=1,
+                            rate=2112,
+                            output=True)
+            first = 1
+        hoge = np.array(data.audio_buf)
+        #hoge.reshape(1)
+        #print len(hoge)
+        #print hoge
+        stream.write(hoge)
+    else:
+	stream.close()
+	first = 0
+    '''
+def listener():
+
+    # in ROS, nodes are unique named. If two nodes with the same
+    # node are launched, the previous one is kicked off. The 
+    # anonymous=True flag means that rospy will choose a unique
+    # name for our 'listener' node so that multiple listeners can
+    # run simultaenously.
+    rospy.init_node('listener', anonymous=True)
+
+    rospy.Subscriber("wav_ok", AudioData, callback)
+
+    # spin() simply keeps python from exiting until this node is stopped
+    rospy.spin()
+        
+if __name__ == '__main__':
+    listener()
+

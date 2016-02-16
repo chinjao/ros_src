@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="zmq_ros" name="emovoice_sub" type="emovoice_sub" required="true" output="screen"/>  
+    <node pkg="zmq_ros" name="experiment_browser" type="experiment_browser" required="true" output="screen"/>    
+    <node pkg="bayesian" name="bayesian_network" type="emotion" required="true" output="screen"/>  
+</launch>

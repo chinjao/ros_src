@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="zmq_ros" name="zmq_sub" type="zmq_sub_new" required="true"/>    
+</launch>

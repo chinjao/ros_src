@@ -1,0 +1,10 @@
+<launch>
+ <!-- amcl を起動-->
+ <!-- 自己位置推定のためのモジュール-->
+ <node pkg="amcl" name="amcl" type="amcl">
+   <param name="odom_alpha1" value="0.8" />
+   <param name="odom_alpha2" value="0.8" />
+   <param name="update_min_a" value="0.2" />
+ </node>
+
+</launch>

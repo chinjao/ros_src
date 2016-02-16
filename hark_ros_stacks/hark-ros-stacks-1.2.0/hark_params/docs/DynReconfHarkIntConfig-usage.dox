@@ -1,0 +1,7 @@
+\subsubsection usage Usage
+\verbatim
+<node name="NodeDynReconfHarkInt" pkg="hark_params" type="NodeDynReconfHarkInt">
+  <param name="number" type="int" value="1" />
+</node>
+\endverbatim
+

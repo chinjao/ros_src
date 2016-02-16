@@ -1,0 +1,17 @@
+{
+	"pioneer" : {
+	       "word" : "pioneer",
+	       "admin" : "Uema",
+	       "robot_num" : 1
+	       },
+	"baxter" : {
+	       "word" : "baxter",
+	       "admin" : "Fukuhara",
+	       "robot_num" : 3
+	       },
+	"roomba" : {
+	       "word" : "roomba",
+	       "admin" : "Hirai",
+	       "robot_num" : 2
+	       }
+} 

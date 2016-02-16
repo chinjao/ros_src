@@ -1,0 +1,4 @@
+string[20] noun
+int64 value
+string verb
+string all

@@ -1,0 +1,15 @@
+<launch>
+ 
+  <!---group ns="key"-->
+    <!---node pkg="talker" name="talk" type="talker"/-->
+    <node pkg="roomba_key" name="key" type="key_voice"/>
+  <!---/group-->
+
+  <!---group ns="roomba"-->
+    <!---node pkg="talker" name="talk" type="talker"/-->
+    <node pkg="kill" name="kill" type="kill" required="true"/>
+  <!---/group-->
+
+
+		   
+</launch>

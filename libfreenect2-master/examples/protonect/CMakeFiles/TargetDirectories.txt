@@ -1,0 +1,7 @@
+/home/yhirai/catkin_ws/src/libfreenect2-master/examples/protonect/CMakeFiles/Protonect.dir
+/home/yhirai/catkin_ws/src/libfreenect2-master/examples/protonect/CMakeFiles/additional_files.dir
+/home/yhirai/catkin_ws/src/libfreenect2-master/examples/protonect/CMakeFiles/freenect2.dir
+/home/yhirai/catkin_ws/src/libfreenect2-master/examples/protonect/CMakeFiles/generate_resources_tool.dir
+/home/yhirai/catkin_ws/src/libfreenect2-master/depends/glfw/src/CMakeFiles/glfw.dir
+/home/yhirai/catkin_ws/src/libfreenect2-master/examples/protonect/CMakeFiles/test_opengl.dir
+/home/yhirai/catkin_ws/src/libfreenect2-master/depends/glfw/CMakeFiles/uninstall.dir

@@ -1,0 +1,26 @@
+#!/usr/bin/env batchflow
+<?xml version="1.0"?>
+<Document>
+  <Network type="subnet" name="MAIN">
+    <Node name="node_LOOP0_1" type="LOOP0" x="-181.000000" y="-34.000000">
+      <Parameter name="DOWHILE" type="bool" value="" description=""/>
+    </Node>
+    <Node name="node_RosNodeGenerator_1" type="RosNodeGenerator" x="-176.000000" y="-91.000000">
+      <Parameter name="NODE_NAME" type="string" value="HarkRosMasterNode" description="Node name for ROS"/>
+    </Node>
+    <NetOutput name="VALUE" node="node_RosNodeGenerator_1" terminal="VALUE" object_type="int" description="int parameter"/>
+    <NetOutput name="OUTPUT1" node="node_LOOP0_1" terminal="OUTPUT1" object_type="any" description="No description available"/>
+    <Note x="0" y="0" visible="0" text="Created with FlowDesigner 0.9.1"/>
+  </Network>
+  <Network type="iterator" name="LOOP0">
+    <Node name="node_Sleep_1" type="Sleep" x="-570.000000" y="146.000000">
+      <Parameter name="SECONDS" type="float" value="20000" description="Sleep x seconds."/>
+    </Node>
+    <Node name="node_RosHarkIntDynReconf_1" type="RosHarkIntDynReconf" x="-574.000000" y="205.000000">
+      <Parameter name="ROS_DURATION" type="float" value="0.001" description="This allows you to specify a duration that you would like to loop at [sec]. Keep this value small."/>
+    </Node>
+    <NetCondition name="CONDITION" node="node_Sleep_1" terminal="VALUE"/>
+    <NetOutput name="OUTPUT1" node="node_RosHarkIntDynReconf_1" terminal="OUTPUT1" object_type="int" description="This output the count."/>
+    <Note x="0" y="0" visible="0" text="Created with FlowDesigner 0.9.1"/>
+  </Network>
+</Document>

@@ -1,0 +1,59 @@
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <fstream>
+
+#include<iconv.h>
+#include <unistd.h>
+using namespace std;
+
+void chatterCallback(const std_msgs::String::ConstPtr& msg)
+{
+  char kk[20];
+
+  strcpy(kk,msg->data.c_str());
+  if(strcmp(kk,"END") == 0){
+    //   cout << "hirai" << endl;
+    return;
+  }
+  
+
+  //  cout << kk << endl;
+  // string end = "END";
+  //  int id = string.Compare(kk,k2);
+  //ROS_INFO("I heard: [%s]", msg->data.c_str());
+    /* if(strcmp(kk,"roomba_connect") == 0 && mod == 0){
+    system("roslaunch automove roomba.launch");
+    mod = 1;
+  }
+  
+  else if(strcmp(kk,"END") == 0 && mod == 1){
+    mod = 0;
+  }
+  count = 0;
+    */
+  
+}
+
+int main(int argc, char **argv)
+{
+
+  int count = 0;
+  char human[30][15];
+  char str[15];
+  FILE *fp;
+
+
+  ros::init(argc, argv, "listener");
+  ros::NodeHandle n;
+  /**
+   * This is a message object. You stuff it with data, and then publish it.
+   */
+
+  ros::Subscriber sub = n.subscribe("chatter", 100, chatterCallback);
+  
+  ros::spin();
+  return 0;
+}

@@ -1,0 +1,12 @@
+# -*- coding: utf-8 -*- 
+
+import xmlrpclib
+import sys, codecs
+
+get_input = raw_input("prease keywords: ")
+
+server = xmlrpclib.ServerProxy("http://d.hatena.ne.jp/xmlrpc")
+res = server.hatena.setKeywordLink({"body":get_input,"mode":"lite","score":'10'})
+
+for r in res['wordlist']:
+ print "word:" + r['word'] + " " + "ジャンル:" + r['cname']

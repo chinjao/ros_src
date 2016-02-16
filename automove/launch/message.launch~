@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="julius" name="first" type="julius" />
+    <node pkg="julius_message" name="julius" type="julius_message"/>
+    <node pkg="kill" name="kill" type="kill" required="true"/>
+		   
+</launch>

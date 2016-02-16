@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="mecab" name="mecab" type="mecab_jul2.py" required="true" output="screen"/>    
+</launch>

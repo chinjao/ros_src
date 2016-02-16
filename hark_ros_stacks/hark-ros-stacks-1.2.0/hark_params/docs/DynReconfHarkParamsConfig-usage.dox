@@ -1,0 +1,17 @@
+\subsubsection usage Usage
+\verbatim
+<node name="NodeDynReconfHarkParams" pkg="hark_params" type="NodeDynReconfHarkParams">
+  <param name="HarkParamsDynReconfEnable" type="bool" value="False" />
+  <param name="LocalizeMUSIC_num_source" type="int" value="2" />
+  <param name="LocalizeMUSIC_min_deg" type="int" value="-180" />
+  <param name="LocalizeMUSIC_max_deg" type="int" value="180" />
+  <param name="LocalizeMUSIC_lower_bound_frequency" type="int" value="500" />
+  <param name="LocalizeMUSIC_upper_bound_frequency" type="int" value="2800" />
+  <param name="SourceTracker_thresh" type="double" value="23.0" />
+  <param name="SourceTracker_pause_length" type="double" value="800.0" />
+  <param name="SourceTracker_min_src_interval" type="double" value="20.0" />
+  <param name="HRLE_lx" type="double" value="0.85" />
+  <param name="HRLE_time_constant" type="double" value="16000.0" />
+</node>
+\endverbatim
+

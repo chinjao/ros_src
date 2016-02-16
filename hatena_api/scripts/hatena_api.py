@@ -1,0 +1,18 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import rospy
+from std_msgs.msg import String
+
+import xmlrpclib
+import sys, codecs
+
+while True:
+	get_input = raw_input("prease keywords: ")
+
+	server = xmlrpclib.ServerProxy("http://d.hatena.ne.jp/xmlrpc")
+	res = server.hatena.setKeywordLink({"body":get_input})
+
+	for r in res['wordlist']:
+ 		print "word:" + r['word'] + " " + "ジャンル:" + r['cname']
+	print

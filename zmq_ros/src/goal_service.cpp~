@@ -1,0 +1,29 @@
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include <iostream>
+#include "humans_msgs/Int32.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string>
+#include <assert.h>
+
+using namespace std;
+
+int main(int argc,char **argv){
+  ros::init(argc,argv,"goal_service");
+  ros::NodeHandle n;
+  while(1){
+     std_msgs::String command_msg = ros::topic::waitForMessage<std_msgs::String>("chatter");
+     /*ros::ServiceClient client n.serviceClient<humans_msgs::Int32>("goal_okao_id");
+    human_msgs::Int32 okaoID;
+    okaoID.n = atoi(command_msg.data.c_str());
+    if(client.call(okaoID))
+      cout << "ok" << endl;
+    else
+    cout << "no" << endl;*/
+  }
+
+
+}

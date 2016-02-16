@@ -1,0 +1,1 @@
+/usr/bin/c++   -std=c++0x  -O2 -g    CMakeFiles/generate_resources_tool.dir/src/generate_resources.cpp.o  -o bin/generate_resources_tool -rdynamic -L/home/yhirai/catkin_ws/src/libfreenect2-master/examples/protonect/../../depends/libusb/lib -L/home/yhirai/catkin_ws/src/libfreenect2-master/examples/protonect/../../depends/glew/lib64 

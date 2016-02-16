@@ -1,0 +1,26 @@
+HARK-ROS package for HARK
+====================================================================================
+
+This package provides seamless communication between HARK and ROS systems.
+
+HARK is a robot audition software collaboratively developed by researchers in Okuno 
+Laboratory at the Kyoto University and Honda Research Institute Japan Co.,Ltd.
+
+ROS is a meta-operating system for robots developed by Willow Garage, Inc.
+
+The HARK module in this package generates a ROS node, publishes/subscribes topics,
+requests commands as a client, and responds to the client commands as a server.
+Also, this provides ROS messages specialized for audio processing (e.g. audio stream)
+which are freely published/subscribed between HARK and ROS.
+
+Take care that only this package is based on BSD license, all other HARK packages 
+follow different license agreements. For the main HARK license agreement, read COPY-
+ING in this package.
+
+Carefully read the following files before you configure, build, install the HARK-ROS.
+
+files:
+README      - This file
+COPYING     - Copyright Notice and License Information of HARK
+/doc        - Installation Instructions and Tutorials
+

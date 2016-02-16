@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="zmq_ros" name="zmq_sub" type="zmq_sub_name" required="true" output="screen"/>    
+    <node pkg="zmq_ros" name="zmq_marker" type="zmq_sub_marker"/>    
+    <node pkg="mecab" name="mecab" type="amivoice_mecab.py"/>
+    <node pkg="mecab" name="listen" type="amivoice_lis"/>
+    <node pkg="hiraidesu" name="noun" type="noun_admin" output="screen"/>
+</launch>

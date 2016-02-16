@@ -1,0 +1,70 @@
+{
+	"平井" : {
+	       "word" : "Hirai",
+	       "command" : "6"
+	       },
+	"上間" : {
+	       "word" : "Uema",
+	       "command" : "1"
+	       },
+	"野川" : {
+	       "word" : "Nogawa",
+	       "command" : "Nogawa"
+	       },
+	"西田" : {
+	       "word" : "Nishida",
+	       "command" : "10"
+	       },
+	"八塚" : {
+	       "word" : "Yatsuzuka",
+	       "command" : "12"
+	       },
+	"寺西" : {
+	       "word" : "Teranishi",
+	       "command" : "7"
+	       },
+	"川北" : {
+	       "word" : "Kawakita",
+	       "command" : "Kawakita"
+	       },
+	"池上" : {
+	       "word" : "Ikegami",
+	       "command" : "Ikegami"
+	       },
+	"川本" : {
+	       "word" : "Kawamoto",
+	       "command" : "Kawamoto"
+	       },
+        "右手" : {
+               "word" : "右手",
+               "command" : "righthand"
+               },
+        "左手" : {
+               "word" : "左手",
+               "command" : "lefthand"
+               },
+        "両手" : {
+               "word" : "両手",
+               "command" : "doublehand"
+               },
+        "手" : {
+               "word" : "手",
+               "command" : "hand"
+               },
+	"福原" : {
+		 "word" : "Fukuhara",
+		 "command" : "9"
+		 },
+	"森岡" : {
+		 "word" : "Morioka",
+		 "command" : "Morioka"
+		},
+	"島田" : {
+		 "word" : "Shimada",
+		 "command" : "Shimada"
+		},
+	"安達" : {
+		 "word" : "Adachi",
+		 "command" : "Adachi"
+		}
+} 

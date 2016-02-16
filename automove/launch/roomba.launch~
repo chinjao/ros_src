@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="julius_client" name="julius" type="julius_client"/>
+    <node pkg="kill" name="kill" type="kill" required="true"/>
+		   
+</launch>

@@ -1,0 +1,90 @@
+{
+	"動く" : {
+	       "word" : "動く",
+	       "command" : "move",
+	       "admin" : "Hirai"
+	       },
+	"表示" : {
+	       "word" : "表示",
+	       "command" : "visual"
+	       },
+	"移動" : {
+	       "word" : "移動",
+	       "command" : "move",
+	       "admin" : "Hirai"
+	       },
+	"行く" : {
+	       "word" : "行く",
+	       "command" : "move",
+	       "admin" : "Hirai"
+	       },
+	"返す" : {
+	       "word" : "返す",
+               "command" : "return"
+	       },
+	"握手" : {
+	       "word" : "握手",
+	       "command" : "handshake"
+	       },
+        "右手" : {
+               "word" : "右手",
+               "command" : "righthand"
+               },
+        "左手" : {
+               "word" : "左手",
+               "command" : "lefthand"
+               },
+        "両手" : {
+               "word" : "両手",
+               "command" : "doublehand"
+               },
+        "手" : {
+               "word" : "手",
+               "command" : "hand"
+               },
+        "上げる" : {
+               "word" : "上げる",
+               "command" : "up",
+	       "admin" : "Hirai"
+               },
+        "あげる" : {
+               "word" : "あげる",
+               "command" : "up",
+	       "admin" : "Hirai"
+               },
+        "挙げる" : {
+               "word" : "挙げる",
+               "command" : "up",
+	       "admin" : "Hirai"
+               },
+        "下げる" : {
+               "word" : "下げる",
+               "command" : "down",
+	       "admin" : "Hirai"
+               },
+        "バイバイ" : {
+               "word" : "バイバイ",
+               "command" : "bye",
+	       "admin" : "Hirai"
+               },
+        "ばいばい" : {
+               "word" : "ばいばい",
+               "command" : "bye",
+	       "admin" : "Hirai"
+               },
+        "さようなら" : {
+               "word" : "さようなら",
+               "command" : "bye",
+	       "admin" : "Hirai"
+               },
+	"動ける" : {
+	       "word" : "動ける",
+	       "command" : "move",
+	       "admin" : "Hirai"
+	       },
+        "やる" : {
+	       "word" : "やる",
+	       "command" : "get",
+	       "admin" : "Hirai"
+	       },
+}

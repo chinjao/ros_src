@@ -1,0 +1,15 @@
+std_msgs/Header header
+string name
+int64 month
+int64 day
+int64 hour
+int64 minute
+int64 second
+string emotion
+float32 happy
+float32 quiet
+float32 sad
+float32 surprise
+float32 angry
+float32 fear
+float32 disgust

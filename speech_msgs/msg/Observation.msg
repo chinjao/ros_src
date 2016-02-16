@@ -1,0 +1,10 @@
+std_msgs/Header header
+string tracking_ID
+string name
+int64 month
+int64 day
+int64 hour
+int64 minute
+int64 second
+string emotion
+float32[] observation_value

@@ -1,0 +1,10 @@
+<stack>
+  <description brief="hark_common_msgs">hark_common_msgs</description>
+  <author>Maintained by user</author>
+  <license>BSD</license>  
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hark_common_msgs</url>
+  <depend stack="driver_common" /> <!-- dynamic_reconfigure -->
+  <depend stack="ros" /> <!-- roslib, rospy, roscpp -->
+
+</stack>

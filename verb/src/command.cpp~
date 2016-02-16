@@ -1,0 +1,19 @@
+#include <fstream>
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main(int argc, char **argv){
+  
+  while(1){
+    ros::init(argc,argv,"command");
+    ros::NodeHandle n;
+    
+    std_msgs::StringConstPtr msg = ros::topic::waitForMessage<std_msgs::String>("command");
+
+    cout << msg->data << endl;
+  }
+}

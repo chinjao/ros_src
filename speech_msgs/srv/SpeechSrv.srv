@@ -1,0 +1,8 @@
+string word
+int32 okao_id
+---------
+int32 okao_id
+int32 freq
+int32 num
+#situation
+#     time

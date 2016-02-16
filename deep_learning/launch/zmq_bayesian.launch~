@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="deep_learning" name="speech_rec" type="speech_rec" required="true" />  
+    <node pkg="deep_learning" name="create_wav" type="create_wav.py" /> 
+    <node pkg="deep_learning" name="create_arff" type="create_arff.py" />
+    <node pkg="deep_learning" name="emotion_recognition" type="emotion_recognition.py" output = "screen"/>
+    <node pkg="deep_learning" name="ASRServer" type="ASRServer.py" />
+    <node pkg="deep_learning" name="speech_recog" type="speech_recog.py" output = "screen" />        
+</launch>

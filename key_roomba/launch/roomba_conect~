@@ -1,0 +1,10 @@
+<launch>
+
+  <node pkg="roomba_500_series" type="roomba_500_light_node" name="roomba_ct" output="screen"/>
+  <node pkg="urg_node" type="urg_node" name="senser_ct" output="screen"/>
+  <node pkg="map_server" type="map_server" name="map" value="map/map_4f.yaml"/>
+  <node pkg="tf" type="static_transform_publish" name="tf" value="0 0 0 0 0 0 /base_link /laser 100"/>
+  <node pkg="roomba" type="move_base">
+  <include file="$(find roomba)/launch/move_base.launch">
+
+</launch>

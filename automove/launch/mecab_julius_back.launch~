@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="mecab" name="start" type="mecab_julius3.py" required="true"/>      
+    <node pkg="mecab" name="mecab" type="mecab_lis"/>
+    <node pkg="noun" name="part" type="noun"/>
+</launch>

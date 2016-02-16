@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="zmq_ros" name="zmq_sub2" type="zmq_sub_name_cpy" required="true" output="screen"/>    
+    <!--node pkg="zmq_ros" name="zmq_marker2" type="zmq_sub_marker_cpy"/-->    
+    <node pkg="mecab" name="mecab2" type="amivoice_mecab_cpy.py"/>
+    <node pkg="mecab" name="listen2" type="amivoice_lis_cpy"/>
+    <node pkg="hiraidesu" name="noun2" type="noun_amivoice" output="screen"/>
+</launch>

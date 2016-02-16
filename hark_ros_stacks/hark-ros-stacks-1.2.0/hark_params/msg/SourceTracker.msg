@@ -1,0 +1,3 @@
+float32 thresh
+float32 pause_length
+float32 min_src_interval

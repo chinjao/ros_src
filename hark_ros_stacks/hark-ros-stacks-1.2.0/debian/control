@@ -1,0 +1,13 @@
+Source: hark-ros-stacks
+Section: non-free/science
+Priority: extra
+Maintainer: HRI-JP <hark-support@kuis.kyoto-u.ac.jp>
+Build-Depends: debhelper (>= 7), cmake
+Standards-Version: 3.8.1
+Homepage: http://winnie.kuis.kyoto-u.ac.jp/HARK/
+
+Package: hark-ros-stacks
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-cturtle-ros
+Description: ROS stack for HARK
+ This stack is used for seemless connection between ROS and HARK.

@@ -1,0 +1,7 @@
+string all
+int64 number
+string[30] word
+string[20] part
+string[20] part2
+string[20] part3
+string[20] part4

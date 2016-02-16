@@ -1,0 +1,17 @@
+<launch>
+
+<!--
+<include file="$(find pioneer_3dx)/launch/pioneer3dx_hokuyo.launch" />
+-->
+
+<!--map server-->
+
+<arg name="map_file" default="$(find automation)/launch/new_labmap.yaml" />
+<node pkg="map_server" type="map_server" name="map_server" args="$(arg map_file)" />
+
+<include file="$(find automation)/launch/amcl_diff.launch" />
+<include file="$(find automation)/launch/move_base.launch" />
+
+<node pkg="rviz" type="rviz" name="rviz" />
+
+</launch>

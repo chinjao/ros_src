@@ -1,0 +1,70 @@
+{
+	"動く" : {
+	       "word" : "動く",
+	       "command" : "move"
+	       },
+	"表示" : {
+	       "word" : "表示",
+	       "command" : "visual"
+	       },
+	"移動" : {
+	       "word" : "移動",
+	       "command" : "move"
+	       },
+	"行く" : {
+	       "word" : "行く",
+	       "command" : "move"
+	       },
+	"返す" : {
+	       "word" : "返す",
+               "command" : "return"
+	       },
+	"握手" : {
+	       "word" : "握手",
+	       "command" : "handshake"
+	       },
+        "右手" : {
+               "word" : "右手",
+               "command" : "righthand"
+               },
+        "左手" : {
+               "word" : "左手",
+               "command" : "lefthand"
+               },
+        "両手" : {
+               "word" : "両手",
+               "command" : "doublehand"
+               },
+        "手" : {
+               "word" : "手",
+               "command" : "hand"
+               },
+        "上げる" : {
+               "word" : "上げる",
+               "command" : "up"
+               },
+        "あげる" : {
+               "word" : "あげる",
+               "command" : "up"
+               },
+        "挙げる" : {
+               "word" : "挙げる",
+               "command" : "up"
+               },
+        "下げる" : {
+               "word" : "下げる",
+           "command" : "down"
+               },
+        "バイバイ" : {
+               "word" : "バイバイ",
+           "command" : "bye"
+               },
+        "ばいばい" : {
+               "word" : "ばいばい",
+               "command" : "bye"
+               },
+        "さようなら" : {
+               "word" : "さようなら",
+               "command" : "bye"
+               }
+}

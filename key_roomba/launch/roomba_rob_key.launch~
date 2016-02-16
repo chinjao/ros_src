@@ -1,0 +1,27 @@
+<launch>
+ <!-- roomba_500_series を起動するためのモジュール-->
+ <node pkg="roomba_500_series" type="roomba_light_node" name="roomba_light_node" />
+
+ <!-- センサ を起動するためのモジュール-->
+ <node pkg="urg_node" type="urg_node" name="urg_node" />
+
+ <!-- map_server を起動するためのモジュール-->
+ <node pkg="map_server" type="map_server" name="map_server" args="map_4f.yaml" />
+
+ <!-- tf を起動-->
+ <!-- 座標変換のためのモジュール-->
+ <node pkg="tf" type="static_transform_publish" name="tf" args="0 0 0 0 0 0 /base_link /laser 100" />
+
+ <!-- roomba を起動-->
+ <!-- roombaをkey操作するためのモジュール>
+ <node pkg="roomba" type="rob_key" name="rob_key" />
+
+ <!-- amcl を起動-->
+ <!-- 自己位置推定のためのモジュール-->
+ <node pkg="amcl" name="amcl" type="amcl">
+   <param name="odom_alpha1" value="0.8" />
+   <param name="odom_alpha2" value="0.8" />
+   <param name="update_min_a" value="0.2" />
+ </node>
+
+</launch>

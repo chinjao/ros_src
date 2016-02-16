@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="julius" name="julius" type="julius" />
+    <node pkg="julius_client" name="julius" type="julius_client"/>
+    <node pkg="chat" name="docomo" type="chat.py"/>
+    <node pkg="kill" name="kill" type="kill" required="true"/>
+		   
+</launch>

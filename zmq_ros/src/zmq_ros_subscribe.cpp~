@@ -1,0 +1,23 @@
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include "zmq_ros/zmq_time.h"
+
+#include <iostream>
+#include "zmq.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string>
+#include <assert.h>
+#include "msgpack.hpp"
+
+using namespace std;
+
+int main(int argc,char **argv){
+  ros::init(argc,argv,"zmq_sub");
+  ros::NodeHandle n;
+  while(1){
+    zmq_ros::zmq_timeConstPtr msg = ros::topic::waitForMessage<zmq_ros::zmq_time>("zmq_publish");
+    cout << msg->trackingID << "," << msg->speech_dic << "," << msg->day_time << endl;
+  }
+}

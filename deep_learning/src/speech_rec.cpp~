@@ -1,0 +1,85 @@
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include "speech_msgs/AudioData.h"
+#include <iostream>
+#include "zmq.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+#include <unistd.h>
+#include <string>
+#include <assert.h>
+#include "msgpack.hpp"
+#include <fstream>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <map>
+
+using namespace std;
+
+struct audioData{
+  uint64_t tracking_ID;
+  int count;
+  string day_time;
+  int month;
+  int day;
+  int hour;
+  int minute;
+  int second;
+  bool ok;
+  vector<float> audio_buf;
+  MSGPACK_DEFINE(tracking_ID,count,day_time,month,day,hour,minute,second,ok,audio_buf);
+}speech_dic;
+
+int main(int argc, char **argv){
+  ros::init(argc,argv,"audiodata_pub");
+  ros::NodeHandle n;
+  string before;
+  ros::Publisher audio_pub = n.advertise<speech_msgs::AudioData>("audiodata_info",1000);
+  speech_msgs::AudioData Audio_msg;
+  zmq::context_t context(1);
+  zmq::socket_t subscriber(context,ZMQ_SUB);
+  msgpack::unpacked unpack_speech;
+  
+  subscriber.connect("tcp://133.19.23.53:5566");
+  subscriber.setsockopt(ZMQ_SUBSCRIBE,"",0);
+  while(1){
+    zmq::message_t update;
+    stringstream ss;
+    subscriber.recv(&update);
+    msgpack::unpack(&unpack_speech,static_cast<const char*>(update.data()),update.size());
+    unpack_speech.get().convert(&speech_dic);
+    
+    ss << speech_dic.tracking_ID;
+
+    //   Audio_msg.TracingID = std::atoll(speech_dic.tracking_ID.c_str());
+    Audio_msg.day_time = speech_dic.day_time;
+    Audio_msg.month = speech_dic.month;
+
+    Audio_msg.day = speech_dic.day;
+
+    Audio_msg.hour = speech_dic.hour;
+    Audio_msg.minute = speech_dic.minute;
+    Audio_msg.second = speech_dic.second;
+
+    Audio_msg.audio_buf = speech_dic.audio_buf;
+    Audio_msg.ok = speech_dic.ok;
+
+    if(speech_dic.ok == 1){
+      cout << "True" << endl;
+      before = ss.str();
+      Audio_msg.tracking_ID = ss.str();
+    }
+    else{
+      cout << "False" << endl;
+      Audio_msg.tracking_ID = before;
+    }
+
+    audio_pub.publish(Audio_msg);
+    cout << before << endl;
+    // cout << speech_dic.audio_buf[0] << endl;
+
+    
+  }
+
+}

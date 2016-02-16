@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="roomba_500_series" name="connect" type="roomba500_light_node"/>
+    <node pkg="roomba_key" name="key" type="key_roomba_voice"/>
+    <node pkg="kill" name="kill" type="kill" required="true"/>
+		   
+</launch>

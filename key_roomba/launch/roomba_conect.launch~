@@ -1,0 +1,13 @@
+<launch>
+　　<!--ルンバとの接続-->
+  <node pkg="roomba_500_series" type="roomba500_light_node" name="roomba500_light_node" output="screen"/>
+  <!--センサとの接続-->
+  <node pkg="urg_node" type="urg_node" name="urg_node" output="screen"/>
+  <!--マップサーバの利用-->
+  <node pkg="map_server" type="map_server" name="map" value="map/map_4f.yaml"/>
+  <!--tf(座標変換)を行う-->
+  <node pkg="tf" type="static_transform_publish" name="tf" value="0 0 0 0 0 0 /base_link /laser 100"/>
+  <!--ルンバの自己位置推定-->
+  <include file="$(find roomba)/launch/roomba_amcl.launch"/>
+  <include file="$(find roomba)/launch/move_base.launch"/>
+</launch>

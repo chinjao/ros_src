@@ -1,0 +1,19 @@
+[ 09.01.2016 - 14:53:29 ]
+    (MSG) [2] in SMILExtract : openSMILE starting!
+[ 09.01.2016 - 14:53:29 ]
+    (MSG) [2] in SMILExtract : config file is: /home/yhirai/openSMILE-2.1.0_other/config/IS10_paraling.conf
+[ 09.01.2016 - 14:53:29 ]
+    (MSG) [2] in cComponentManager : successfully registered 95 component types.
+[ 09.01.2016 - 14:53:29 ]
+    (MSG) [2] in instance 'lldsink' : No filename given, disabling this sink component.
+[ 09.01.2016 - 14:53:29 ]
+    (MSG) [2] in instance 'csvsink' : No filename given, disabling this sink component.
+[ 09.01.2016 - 14:53:29 ]
+    (MSG) [2] in instance 'arffsink' : writing ARFF header (1582 features)...
+[ 09.01.2016 - 14:53:29 ]
+    (MSG) [2] in cComponentManager : successfully finished createInstances
+                                 (36 component instances were finalised, 1 data memories were finalised)
+[ 09.01.2016 - 14:53:29 ]
+    (MSG) [2] in cComponentManager : starting single thread processing loop
+[ 09.01.2016 - 14:53:29 ]
+    (MSG) [2] in cComponentManager : Processing finished! System ran for 104 ticks.

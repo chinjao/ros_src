@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="zmq_ros" name="emovoice_sub" type="emovoice_sub" required="true" output="screen"/>  
+    <node pkg="zmq_ros" name="emovoice_browser" type="emovoice_browser" required="true" output="screen"/>    
+</launch>

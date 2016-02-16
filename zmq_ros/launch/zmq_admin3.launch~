@@ -1,0 +1,7 @@
+<launch>
+    <node pkg="zmq_ros" name="receive" type="zmq_sub_new" required="true" />    
+    <node pkg="zmq_ros" name="marker" type="zmq_sub_marker"/>    
+    <node pkg="mecab" name="morpheme" type="morpheme_estimation.py" output="screen"/>
+    <node pkg="zmq_ros" name="speech_recog" type="speech_recog_baxter" output="screen"/>   
+    <node pkg="chat" name="conversation" type="conversation.py"/>   
+</launch>

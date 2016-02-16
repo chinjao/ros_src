@@ -1,0 +1,5 @@
+#undef SVN_REVISION
+
+#undef TAGS_VERSION
+
+#undef ENABLE_ROS

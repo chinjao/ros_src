@@ -1,0 +1,16 @@
+<launch>
+ <!-- ルンバを起動するためのモジュール-->
+ <node pkg="roomba_500_series" type="roomba_light_node" name="roomba_light_node">
+
+ <!-- センサを起動するためのモジュール-->
+ <node pkg="urg_node" type="urg_node" name="urg_node">
+
+ <!-- map_serverを起動するためのモジュール-->
+ <node pkg="map_server" type="map_server" name="map_server" args="map_4f.yaml">
+
+ <node pkg="tf" type="static_transform_publish" name="" args="0 0 0 0 0 0 /base_link /laser 100">
+
+ <node pkg="amcl" name="amcl" type=amcl>
+ <param name="">
+
+</launch>

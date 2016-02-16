@@ -1,0 +1,123 @@
+#include "ros/ros.h"
+#include "std_msgs/String.h"
+#include "zmq_ros/zmq_time2.h"
+#include "humans_msgs/HumanSrv.h"
+#include <iostream>
+#include "zmq.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string>
+#include <assert.h>
+#include "msgpack.hpp"
+#include <fstream>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <map>
+
+using namespace std;
+
+struct speech{
+  string tracking_ID;
+  string speech_dictation;
+  string day_time;
+  string place;
+  MSGPACK_DEFINE(tracking_ID,speech_dictation,day_time,place);
+}speech_dic;
+
+int main(int argc, char **argv){
+  ros::init(argc, argv, "zmq_pub");
+
+  ros::NodeHandle n;
+  struct stat st;
+  const char* dir;
+  int ret;
+  ros::Publisher zmq_pub = n.advertise<zmq_ros::zmq_time2>("zmq_publish", 1000);
+  zmq_ros::zmq_time2 zmq_msg;
+  
+  zmq::context_t context(1);
+  //zmq::context_t context_push(1);
+  zmq::socket_t subscriber(context,ZMQ_SUB);
+  // zmq::socket_t sender(context_push,ZMQ_PUSH);
+  msgpack::unpacked unpack_speech;
+ 
+ 
+  subscriber.connect("tcp://133.19.23.205:4413");
+  subscriber.setsockopt(ZMQ_SUBSCRIBE,"",0);
+  //  sender.connect("tcp://133.19.23.224:8081");
+  //  map<string, string> dict;
+  while(1){
+    //dict.clear();
+    //dict["senderName"] = "speechRecognition";
+
+    zmq::message_t update;
+    subscriber.recv(&update);
+    msgpack::unpack(&unpack_speech,static_cast<const char*>(update.data()),update.size());
+    unpack_speech.get().convert(&speech_dic); //ここでmsgpack受け取り
+    /*ros::ServiceClient client = n.serviceClient<humans_msgs::HumanSrv>("track_srv");
+        humans_msgs::HumanSrv trackingID;
+    long long tracking = std::atoll(speech_dic.tracking_ID.c_str());
+    trackingID.request.src.body.tracking_id = tracking;
+    trackingID.request.src.header.frame_id = "map";  */
+    msgpack::sbuffer buffer;
+    //if(client.call(trackingID)){
+      string text_file,dir_place;
+      /*if(trackingID.response.dst.face.persons[0].name == "")
+	trackingID.response.dst.face.persons[0].name = "Unknown";*/
+      dir_place ="/home/yhirai/speech_dic/" + trackingID.response.dst.face.persons[0].name;
+      
+      text_file = dir_place + "/" + speech_dic.day_time + ".txt";
+      dir = dir_place.c_str();
+      ret = stat(dir,&st);
+      cout << text_file << endl;
+      if(ret != 0){
+	mkdir(dir,0777);
+      }	    
+      ofstream ofs(text_file.c_str());
+      ofs << "TrackingID : " << speech_dic.tracking_ID << endl;
+      ofs << "音声認識結果 : " << speech_dic.speech_dictation << endl;
+      //      if(trackingID.response.dst.face.persons[0].name != ""){
+      //zmq_msg.name = trackingID.response.dst.face.persons[0].name;
+	zmq_msg.trackingID = speech_dic.tracking_ID;
+	zmq_msg.day_time = speech_dic.day_time;
+	zmq_msg.speech_dic = speech_dic.speech_dictation;
+	zmq_pub.publish(zmq_msg);
+	/*dict["name"] = zmq_msg.name;
+	dict["time"] = zmq_msg.day_time;
+	dict["speechRec"] = zmq_msg.speech_dic;
+	dict["place"] = speech_dic.place;*/
+	//msgpack::pack(buffer,dict);
+	//zmq::message_t message(buffer.size());
+	//memcpy(message.data(),buffer.data(),buffer.size());
+	//	sender.send(message);
+	cout << "音声認識結果:" << speech_dic.speech_dictation << endl;
+	cout << "取得時間:" << speech_dic.day_time << endl;
+	cout << "取得場所:" << speech_dic.place << endl;
+	cout << "発話者名:" << zmq_msg.name << endl;
+	cout << endl;
+	//}
+	//}
+    /*    else{
+      string text_file;
+      text_file = "/home/yhirai/speech_dic/Unknown/" + speech_dic.day_time + ".txt";
+      cout << "音声認識結果:" << speech_dic.speech_dictation << endl;
+      cout << "取得時間:" << speech_dic.day_time << endl;
+      cout << "取得場所:" << speech_dic.place << endl;
+      cout << "発話者名:" << "Unknown" << endl;
+      dict["name"] = "Unknown";
+      dict["time"] = speech_dic.day_time;
+      dict["speechRec"] = speech_dic.speech_dictation;
+      dict["place"] = speech_dic.place;
+      msgpack::pack(buffer,dict);
+      zmq::message_t message(buffer.size());
+      memcpy(message.data(),buffer.data(),buffer.size());
+      sender.send(message);
+      cout << endl;
+      ofstream ofs(text_file.c_str());
+      ofs << "TrackingID : " << speech_dic.tracking_ID << endl;
+      ofs << "音声認識結果 : " << speech_dic.speech_dictation << endl;
+      
+      }*/
+  }
+  return 0;
+}

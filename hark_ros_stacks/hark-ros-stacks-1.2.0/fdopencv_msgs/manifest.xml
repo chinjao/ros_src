@@ -1,0 +1,22 @@
+<package>
+  <description brief="fdopencv_msgs">
+
+     fdopencv_msgs
+
+  </description>
+  <author>Keisuke Nakamura</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/fdopencv_msgs</url>
+  <depend package="roscpp"/>
+  <depend package="roslib"/>
+  <depend package="rospy"/>
+  <depend package="sensor_msgs"/>
+
+  <export>
+    <cpp cflags="-I${prefix}/include -I${prefix}/msg/cpp -I${prefix}/srv/cpp"/>
+  </export>
+
+</package>
+
+

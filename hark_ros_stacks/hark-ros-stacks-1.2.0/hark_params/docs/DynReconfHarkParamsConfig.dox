@@ -1,0 +1,16 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~HarkParamsDynReconfEnable" : \b [bool] Enable dynamic reconf mode min: False, default: False, max: True
+- \b "~LocalizeMUSIC_num_source" : \b [int] LocalizeMUSIC : NUM_SOURCE min: 1, default: 2, max: 7
+- \b "~LocalizeMUSIC_min_deg" : \b [int] LocalizeMUSIC : MIN_DEG min: -180, default: -180, max: 180
+- \b "~LocalizeMUSIC_max_deg" : \b [int] LocalizeMUSIC : MAX_DEG min: -180, default: 180, max: 180
+- \b "~LocalizeMUSIC_lower_bound_frequency" : \b [int] LocalizeMUSIC : LOWER_BOUND_FREQUENCY min: 0, default: 500, max: 8000
+- \b "~LocalizeMUSIC_upper_bound_frequency" : \b [int] LocalizeMUSIC : UPPER_BOUND_FREQUENCY min: 0, default: 2800, max: 8000
+- \b "~SourceTracker_thresh" : \b [double] SourceTracker : THRESH min: 0.0, default: 23.0, max: 100.0
+- \b "~SourceTracker_pause_length" : \b [double] SourceTracker : PAUSE_LENGTH min: 0.0, default: 800.0, max: 5000.0
+- \b "~SourceTracker_min_src_interval" : \b [double] SourceTracker : MIN_SRC_INTERVAL min: 0.0, default: 20.0, max: 180.0
+- \b "~HRLE_lx" : \b [double] HRLE : LX min: 0.0, default: 0.85, max: 1.0
+- \b "~HRLE_time_constant" : \b [double] HRLE : TIME_CONSTANT min: 160.0, default: 16000.0, max: 960000.0
+

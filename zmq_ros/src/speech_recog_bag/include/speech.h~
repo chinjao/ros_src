@@ -1,0 +1,44 @@
+/*
+  2015.2.27--------------------------------
+  誰と誰が何を話したかを記録するモジュール
+
+*/
+
+//#include "picojson-master/picojson.h"
+#include <ros/ros.h>
+#include <message_filters/subscriber.h>
+#include <message_filters/synchronizer.h>
+#include <message_filters/sync_policies/approximate_time.h>
+
+#include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+#include <map>
+#include <algorithm>
+#include <cassert>
+#include <memory>
+
+#include <fstream>
+#include "zmq.hpp"
+#include <msgpack.hpp>
+
+#include <humans_msgs/Humans.h>
+
+#include <speech_msgs/Speech.h>
+#include <speech_msgs/Extract.h>
+#include <zmq_ros/mecab_amivoice2.h>
+#include <speech_msgs/SpeechSrv.h>
+#include <sys/stat.h>
+#include "std_msgs/String.h"
+
+#include <boost/thread.hpp>
+#include <string>
+#include <cmath>
+
+using namespace std;
+using namespace picojson;
+using namespace boost;
+
+#define MASTER 1
+

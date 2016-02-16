@@ -1,0 +1,26 @@
+{
+	"動く" : {
+	       "word" : "動く",
+	       "command" : "move"
+	       },
+	"表示" : {
+	       "word" : "表示",
+	       "command" : "visual"
+	       },
+	"移動" : {
+	       "word" : "移動",
+	       "command" : "move"
+	       },
+	"行く" : {
+	       "word" : "行く",
+	       "command" : "move"
+	       },
+	"返す" : {
+	       "word" : "返す",
+               "command" : "return"
+	       },
+	"握手" : {
+	       "word" : "握手",
+	       "command" : "handshake"
+	       }
+}

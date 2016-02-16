@@ -1,0 +1,6 @@
+<launch>
+
+    <node pkg="hirai_navi" name="navi" type="navigation_6" required="true"/>
+
+</launch>
+

@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+
+import rospy
+from std_msgs.msg import String
+
+import xmlrpclib
+import sys, codecs
+
+#while True:
+get_input = raw_input("prease keywords: ")
+server = xmlrpclib.ServerProxy("http://d.hatena.ne.jp/xmlrpc")
+res = server.hatena.getSimilarWord({'wordlist':get_input})
+
+print "word:" + get_input
+for r in res['wordlist']:
+	print "もしかして:" + r['word']
+print

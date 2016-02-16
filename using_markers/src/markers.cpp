@@ -1,0 +1,39 @@
+#include "ros/ros.h"
+#include <iostream>
+#include "zmq.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string>
+#include <assert.h>
+#include "msgpack.hpp"
+#include <visualization_msgs/Marker.h>
+
+using namespace std;
+
+struct b_angle{
+  float beam_angle;
+  float confidence;
+  MSGPACK_DEFINE(beam_angle,confidence);
+}angle;
+
+int main(int argc, char **argv){
+
+  ros::init(argc,argv,"angle_marker");
+  ros::NodeHandle n;
+  // ros::Publisher marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker",1);
+
+  zmq::context_t context(1);
+  zmq::socket_t subscriber(context,ZMQ_SUB);
+  msgpack::unpacked unpack_angle;
+  subscriber.connect("tcp://133.19.23.205:5511");
+  subscriber.setsockopt(ZMQ_SUBSCRIBE,"",0);
+  while(1){
+    zmq::message_t update;
+    subscriber.recv(&update);
+    msgpack::unpack(&unpack_angle,static_cast<const char*>(update.data()),update.size());
+    unpack_angle.get().convert(&angle); //ここでmsgpack受け取り
+    cout << angle.beam_angle << endl;
+  }
+  return 0;
+}

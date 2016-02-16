@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+
+import rospy
+from std_msgs.msg import Float32MultiArray
+from jsk_recognition_msgs.msg import HistogramWithRange, HistogramWithRangeBin
+import numpy as np
+from speech_msgs.msg import Bayesian
+
+pub = rospy.Publisher("normal_array", Float32MultiArray)
+
+def callback(data):
+    print data.name
+    if data.name == "Hirai":
+        print data.estimation_value
+        a_x = np.arange(7)
+        for var in range(0,7):
+            a_x[var] = data.estimation_value[var]
+        msg = Float32MultiArray()
+        hist, bins = np.histogram(a_x,bins = 7)
+        msg.data = data.estimation_value
+        pub.publish(msg)
+
+
+def listener():
+    rospy.init_node('create_hist_pub', anonymous = True)
+    rospy.Subscriber("visualize", Bayesian, callback)
+    rospy.spin()
+
+if __name__ == '__main__':
+    listener()

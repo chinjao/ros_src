@@ -1,0 +1,38 @@
+#include <ros/ros.h>
+#include "geometry_msgs/Twist.h"
+
+#include <signal.h>
+#include <termios.h>
+
+using geometry_msgs::Twist;
+using namespace std;
+
+ros::Publisher chatter_pub;
+ros::Time t1;////Point to be NOTED
+Twist vel;
+int kfd = 0;
+struct termios cooked, raw;
+
+int main(int argc,char** argv){
+  ros::init(argc,argv,"base");
+  ros::NodeHandle n;
+  chatter_pub = n.advertise<Twist>("/RosAria/cmd_vel",1);
+  vel.angular.z = 0.2;
+
+  chatter_pub.publish(vel);
+
+  sleep(2);
+
+  vel.angular.z = -0.2;
+
+  chatter_pub.publish(vel);
+
+  sleep(2);
+
+  vel.angular.z = 0;
+
+  chatter_pub.publish(vel);
+
+  return(0);
+
+}

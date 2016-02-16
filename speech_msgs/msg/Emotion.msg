@@ -1,0 +1,12 @@
+std_msgs/Header header
+string name
+int64 month
+int64 day
+int64 hour
+int64 minute
+int64 second
+string emotion
+float32[100] observation_value
+float32 positive
+float32 normal
+float32 negative

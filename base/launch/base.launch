@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="initial_pose" name="initial" type="initial_pose"/>
+    <node pkg="base" name="base" type="base"/>
+		   
+</launch>

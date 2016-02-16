@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="start_t" name="start" type="start_t" required="true"/>    
+    <node pkg="talker" name="talk" type="talker"/>
+    <node pkg="listener" name="listen" type="listener"/>
+  
+</launch>

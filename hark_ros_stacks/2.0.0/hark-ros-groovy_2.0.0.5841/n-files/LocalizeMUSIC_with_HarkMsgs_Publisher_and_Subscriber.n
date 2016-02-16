@@ -1,0 +1,98 @@
+#!/usr/bin/env batchflow
+<?xml version="1.0"?>
+<Document>
+  <Network type="subnet" name="MAIN">
+    <Node name="node_MAIN_LOOP_1" type="MAIN_LOOP" x="-163.000000" y="178.000000">
+      <Parameter name="LENGTH" type="int" value="512" description="The length of a frame (per channel)."/>
+      <Parameter name="ADVANCE" type="int" value="160" description="Advance."/>
+      <Parameter name="DOWHILE" type="int" value="" description=""/>
+    </Node>
+    <Node name="node_Constant_1" type="Constant" x="-410.000000" y="178.000000">
+      <Parameter name="VALUE" type="subnet_param" value="ARG1" description="The value"/>
+    </Node>
+    <Node name="node_InputStream_1" type="InputStream" x="-289.000000" y="178.000000">
+      <Parameter name="TYPE" type="String" value="" description="Type of stream: stream, fd, or FILE (default stream)"/>
+      <Parameter name="RETRY" type="int" value="" description="If set to N, InputStream will retry N times on open fail"/>
+    </Node>
+    <Node name="node_RosNodeGenerator_1" type="RosNodeGenerator" x="-262.000000" y="106.000000">
+      <Parameter name="NODE_NAME" type="string" value="HARK_MASTER_NODE" description="Node name for ROS"/>
+    </Node>
+    <Link from="node_Constant_1" output="VALUE" to="node_InputStream_1" input="INPUT"/>
+    <Link from="node_InputStream_1" output="OUTPUT" to="node_MAIN_LOOP_1" input="INPUT"/>
+    <NetOutput name="VALUE" node="node_RosNodeGenerator_1" terminal="VALUE" object_type="int" description="int parameter"/>
+    <NetOutput name="OUTPUT" node="node_MAIN_LOOP_1" terminal="OUTPUT" object_type="any" description="No description available"/>
+    <NetOutput name="OUTPUT_1" node="node_MAIN_LOOP_1" terminal="OUTPUT_1" object_type="any" description="No description available"/>
+  </Network>
+  <Network type="iterator" name="MAIN_LOOP">
+    <Node name="node_MultiFFT_1" type="MultiFFT" x="-225.000000" y="124.000000">
+      <Parameter name="LENGTH" type="int" value="512" description="The length of FFT."/>
+      <Parameter name="WINDOW" type="string" value="HAMMING" description="A window function for FFT. WINDOW should be &quot;CONJ&quot;."/>
+      <Parameter name="WINDOW_LENGTH" type="int" value="512" description="The length of the window."/>
+    </Node>
+    <Node name="node_SourceTracker_1" type="SourceTracker" x="-109.000000" y="326.000000">
+      <Parameter name="THRESH" type="float" value="32" description="Threshold of a power of Source. When the power is less than the threshold, the source is deleted."/>
+      <Parameter name="PAUSE_LENGTH" type="float" value="1300" description="pause length."/>
+      <Parameter name="MIN_SRC_INTERVAL" type="float" value="20" description="Threshold of a source interval. When an angle between two sources are smaller than MIN_SRC_INTERVAL, the sources are given the same ID."/>
+      <Parameter name="DEBUG" type="bool" value="false" description="Output debug information if true [default: false]"/>
+    </Node>
+    <Node name="node_AudioStreamFromWave_1" type="AudioStreamFromWave" x="-493.000000" y="131.000000">
+      <Parameter name="LENGTH" type="subnet_param" value="LENGTH" description="Length of a frame in one channel (in samples)."/>
+      <Parameter name="ADVANCE" type="subnet_param" value="ADVANCE" description="Length between a current frame and a next frame (in samples)."/>
+      <Parameter name="USE_WAIT" type="bool" value="false" description="If true, wait as really recording."/>
+    </Node>
+    <Node name="node_DisplayLocalization_2" type="DisplayLocalization" x="51.000000" y="326.000000"/>
+    <Node name="node_LocalizeMUSIC_1" type="LocalizeMUSIC" x="-105.000000" y="124.000000">
+      <Parameter name="NB_CHANNELS" type="int" value="8" description="The number of input channels. [default: 8]"/>
+      <Parameter name="LENGTH" type="int" value="512" description="The frame length of each channel (in samples) [default: 512]."/>
+      <Parameter name="SAMPLING_RATE" type="int" value="16000" description="Sampling rate (Hz) [default: 16000]."/>
+      <Parameter name="A_MATRIX" type="string" value="test.dat" description="Filename of a transfer function matrix."/>
+      <Parameter name="ELEVATION" type="float" value="16.7" description="An angle of elevation for source locations in degree. [default: 15.0]"/>
+      <Parameter name="PERIOD" type="int" value="50" description="The number of frames used for calculating a correlation matrix. [default: 50]"/>
+      <Parameter name="NUM_SOURCE" type="int" value="2" description="Number of sources, which should be less than NB_CHANNELS [default: 2]."/>
+      <Parameter name="MIN_DEG" type="int" value="-180" description="Minimum source direction to localize in degree. [default: -180]"/>
+      <Parameter name="MAX_DEG" type="int" value="180" description="Maximum source direction to localize in degree. [default: 180]"/>
+      <Parameter name="LOWER_BOUND_FREQUENCY" type="int" value="500" description="Lower bound of frequency (Hz) used for correlation matrix calculation. [default: 500]"/>
+      <Parameter name="UPPER_BOUND_FREQUENCY" type="int" value="2800" description="Upper bound of frequency (Hz) used for correlation function matrix. [default: 2800]"/>
+      <Parameter name="DEBUG" type="bool" value="false" description="Debug option. If true, output sound localization results to standard output. [default: false]"/>
+    </Node>
+    <Node name="node_RosHarkMsgsPublisher_2" type="RosHarkMsgsPublisher" x="182.000000" y="139.000000">
+      <Parameter name="ADVANCE" type="int" value="160" description="Shift sample number for sliding spectrum analysis."/>
+      <Parameter name="ENABLE_DEBUG" type="bool" value="false" description="print debug message of this module in case of true."/>
+      <Parameter name="TOPIC_NAME_HARKWAVE" type="string" value="HarkWave" description="Published topic name for ROS (HarkWave type message)"/>
+      <Parameter name="TOPIC_NAME_HARKFFT" type="string" value="HarkFFT" description="Published topic name for ROS (HarkFFT type message)"/>
+      <Parameter name="TOPIC_NAME_HARKFEATURE" type="string" value="HarkFeature" description="Published topic name for ROS (HarkFeature type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSOURCE" type="string" value="HarkSource" description="Published topic name for ROS (HarkSource type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSRCWAVE" type="string" value="HarkSrcWave" description="Published topic name for ROS (HarkSrcWave type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSRCFFT" type="string" value="HarkSrcFFT" description="Published topic name for ROS (HarkSrcFFT type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSRCFEATURE" type="string" value="HarkSrcFeature" description="Published topic name for ROS (HarkSrcFeature type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSRCFEATUREMFM" type="string" value="HarkSrcFeatureMFM" description="Published topic name for ROS (HarkSrcFeatureMFM type message)"/>
+      <Parameter name="BUFFER_NUM" type="int" value="100" description="Buffer size for a ROS published message"/>
+      <Parameter name="ROS_LOOP_RATE" type="float" value="100000" description="This allows you to specify a frequency that you would like to loop at [Hz]. Keep this value large. (If ROS interval is shorter than HARK interval, ROS interval is overwritten.)"/>
+    </Node>
+    <Node name="node_RosHarkMsgsSubscriber_1" type="RosHarkMsgsSubscriber" x="-423.000000" y="363.000000">
+      <Parameter name="NB_CHANNELS" type="int" value="8" description="The number of input channels. Only used for initial no data period (Not important). [default: 8]"/>
+      <Parameter name="FFT_LENGTH" type="int" value="512" description="FFT length in sample. Only used for initial no data period (Not important). [default: 512]"/>
+      <Parameter name="ENABLE_DEBUG" type="bool" value="true" description="print debug message of this module in case of true."/>
+      <Parameter name="TOPIC_NAME_HARKWAVE" type="string" value="HarkWave" description="Published topic name for ROS (HarkWave type message)"/>
+      <Parameter name="TOPIC_NAME_HARKFFT" type="string" value="HarkFFT" description="Subscribed topic name for ROS (HarkFFT type message)"/>
+      <Parameter name="TOPIC_NAME_HARKFEATURE" type="string" value="HarkFeature" description="Subscribed topic name for ROS (HarkFeature type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSOURCE" type="string" value="HarkSource" description="Subscribed topic name for ROS (HarkSource type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSRCWAVE" type="string" value="HarkSrcWave" description="Subscribed topic name for ROS (HarkSrcWave type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSRCFFT" type="string" value="HarkSrcFFT" description="Subscribed topic name for ROS (HarkSrcFFT type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSRCFEATURE" type="string" value="HarkSrcFeature" description="Subscribed topic name for ROS (HarkSrcFeature type message)"/>
+      <Parameter name="TOPIC_NAME_HARKSRCFEATUREMFM" type="string" value="HarkSrcFeatureMFM" description="Subscribed topic name for ROS (HarkSrcFeatureMFM type message)"/>
+      <Parameter name="ROS_LOOP_RATE" type="float" value="1000000" description="This allows you to specify a frequency that you would like to loop at [Hz]. Keep this value large. (If ROS interval is shorter than HARK interval, ROS interval is overwritten.)"/>
+      <Parameter name="MSG_BUFFER_NUM" type="int" value="100" description="Buffer size for a ROS subscribed message."/>
+      <Parameter name="DATA_BUFFER_NUM" type="int" value="100" description="Buffer save size for a HARK output. Too small value makes packet loss. Too large value takes large memory."/>
+    </Node>
+    <Link from="node_SourceTracker_1" output="OUTPUT" to="node_DisplayLocalization_2" input="SOURCES"/>
+    <Link from="node_AudioStreamFromWave_1" output="AUDIO" to="node_MultiFFT_1" input="INPUT"/>
+    <Link from="node_MultiFFT_1" output="OUTPUT" to="node_LocalizeMUSIC_1" input="INPUT"/>
+    <Link from="node_LocalizeMUSIC_1" output="OUTPUT" to="node_RosHarkMsgsPublisher_2" input="SRC_INFO"/>
+    <Link from="node_RosHarkMsgsSubscriber_1" output="SRC_INFO" to="node_SourceTracker_1" input="INPUT"/>
+    <NetInput name="INPUT" node="node_AudioStreamFromWave_1" terminal="INPUT" object_type="Stream" description="An audio input stream (IStream)."/>
+    <NetOutput name="OUTPUT" node="node_RosHarkMsgsPublisher_2" terminal="OUTPUT" object_type="ObjectRef" description="This is a dummy output, and it has no mean. Only for an activation of this module."/>
+    <NetCondition name="CONDITION" node="node_AudioStreamFromWave_1" terminal="NOT_EOF"/>
+    <NetOutput name="OUTPUT_1" node="node_DisplayLocalization_2" terminal="OUTPUT" object_type="Vector&lt;ObjectRef&gt;" description="The same as input."/>
+  </Network>
+</Document>

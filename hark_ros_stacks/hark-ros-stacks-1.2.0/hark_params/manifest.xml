@@ -1,0 +1,22 @@
+<package>
+  <description brief="hark_params">
+
+     hark_params
+
+  </description>
+  <author>Keisuke Nakamura</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hark_params</url>
+  <depend package="rospy"/>
+  <depend package="roscpp"/>
+  <depend package="hark_msgs"/>
+  <depend package="dynamic_reconfigure"/>
+
+  <export>
+    <cpp cflags="-I${prefix}/include -I${prefix}/cfg/cpp -I${prefix}/msg/cpp -I${prefix}/srv/cpp"/>
+  </export>
+
+</package>
+
+

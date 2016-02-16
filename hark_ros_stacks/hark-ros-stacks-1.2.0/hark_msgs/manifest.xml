@@ -1,0 +1,52 @@
+<package>
+  <description brief="hark_msgs">
+
+     hark_msgs
+
+  </description>
+  <author>Keisuke Nakamura</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/hark_msgs</url>
+  <depend package="roscpp"/>
+  <depend package="roslib"/>
+  <depend package="rospy"/>
+  <export>
+    <cpp cflags="-I${prefix}/include -I${prefix}/msg/cpp -I${prefix}/srv/cpp"/>
+  </export>
+
+  <platform os="ubuntu" version="9.04"/>
+  <platform os="ubuntu" version="9.10"/>
+  <platform os="ubuntu" version="10.04"/>
+
+  <rosbuild2>
+    <msgs>
+      msg/HarkFFT.msg
+      msg/HarkJuliusSrcVal.msg
+      msg/HarkSrcFeatureMFMVal.msg
+      msg/HarkFFTVal.msg
+      msg/HarkSource.msg
+      msg/HarkSrcFeatureVal.msg
+      msg/HarkFeature.msg
+      msg/HarkSourceVal.msg
+      msg/HarkSrcWave.msg
+      msg/HarkFeatureVal.msg
+      msg/HarkSrcFFT.msg
+      msg/HarkSrcWaveVal.msg
+      msg/HarkInt.msg
+      msg/HarkSrcFFTVal.msg
+      msg/HarkWave.msg
+      msg/HarkJulius.msg
+      msg/HarkSrcFeature.msg
+      msg/HarkWaveVal.msg
+      msg/HarkJuliusSrc.msg
+      msg/HarkSrcFeatureMFM.msg  
+    </msgs>
+    <srvs>
+      srv/HarkIntSrv.srv
+    </srvs>
+  </rosbuild2>
+
+</package>
+
+

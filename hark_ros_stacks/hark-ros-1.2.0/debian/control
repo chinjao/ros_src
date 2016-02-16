@@ -1,0 +1,14 @@
+Source: hark-ros-groovy
+Section: non-free/science
+Priority: extra
+Maintainer: HRI-JP <hark-support@kuis.kyoto-u.ac.jp>
+Build-Depends: debhelper (>= 7), autotools-dev
+Standards-Version: 3.8.1
+Homepage: http://winnie.kuis.kyoto-u.ac.jp/HARK/
+
+Package: hark-ros-groovy
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends} , ros-groovy-desktop-full
+Conflicts: hark-ros , hark-ros-cturtle , hark-ros-electric , hark-ros-fuerte
+Description: HARK modules interfacing with ROS
+
